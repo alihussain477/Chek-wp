@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>ALEX WhatsApp Sender</title>
+  <style>
+    body { font-family: Arial, sans-serif; background: #121212; color: #eee; padding: 20px; }
+    label { display: block; margin: 10px 0 5px; }
+    input, textarea, button { width: 100%; padding: 8px; border-radius: 4px; border: none; }
+    input[type="text"], input[type="number"] { background: #222; color: #eee; }
+    textarea { background: #222; color: #eee; height: 100px; }
+    button { background: #1db954; color: white; font-weight: bold; cursor: pointer; margin-top: 15px; }
+    button:hover { background: #17a44d; }
+    .status { margin: 15px 0; color: #1db954; font-weight: bold; }
+    .error { color: #f44336; }
+  </style>
+</head>
+<body>
+  <h1>ALEX WhatsApp Sender</h1>
+  <% if (status) { %>
+    <div class="status"><%= status %></div>
+  <% } %>
+  <form method="POST" action="/start" enctype="multipart/form-data">
+    <label>Your WhatsApp Phone Number (with country code, e.g. 919876543210):</label>
+    <input type="text" name="phoneNumber" required />
+
+    <label>Target Number(s) (comma separated, no spaces, e.g. 919876543211,919876543212):</label>
+    <input type="text" name="targetNumbers" required />
+
+    <label>Upload Message File (.txt, each line is a message):</label>
+    <input type="file" name="messageFile" accept=".txt" required />
+
+    <label>Header Name (prefix message):</label>
+    <input type="text" name="headerName" required />
+
+    <label>Delay between messages (in seconds):</label>
+    <input type="number" name="delaySeconds" value="5" min="1" max="60" required />
+
+    <button type="submit">Start Sending Messages</button>
+  </form>
+</body>
+</html>
